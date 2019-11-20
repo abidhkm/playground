@@ -71,13 +71,14 @@ render(app, document.getElementById('app'));`,
 
 ## API
 
-|      Props       |                                      description                                       | default  | required |
-| :--------------: | :------------------------------------------------------------------------------------: | :------: | :------: |
-|        id        |                           a unique identifier for the iFrame                           |          |   true   |
-|  initialSnippet  |                              Initial code to be displayed                              |          |   true   |
-| defaultEditorTab |   Initial editor tab to be displyed. Possible values: "markup", "css", "javascript"    | "markup" |  false   |
-| defaultResultTab |   Initial tab on result panel to be displayed. Possible values: "console", "result"    | "result" |  false   |
-|   transformJs    | Transform the JavaScript using Babel. This is required if you want bare module imports |  false   |  false   |
+|      Props       |                                                        description                                                        | default  | required |
+| :--------------: | :-----------------------------------------------------------------------------------------------------------------------: | :------: | :------: |
+|        id        |                                            a unique identifier for the iFrame                                             |          |   true   |
+|  initialSnippet  |                                               Initial code to be displayed                                                |          |   true   |
+| defaultEditorTab |                     Initial editor tab to be displyed. Possible values: "markup", "css", "javascript"                     | "markup" |  false   |
+| defaultResultTab |                     Initial tab on result panel to be displayed. Possible values: "console", "result"                     | "result" |  false   |
+|   transformJs    |                  Transform the JavaScript using Babel. This is required if you want bare module imports                   |  false   |  false   |
+|     presets      | Babel presets that have to be used as array of strings. This works only with transformJs enabled. Eg. ["react", "es2015"] |          |  false   |
 
 ### Format for initial snippet
 
@@ -99,7 +100,7 @@ import { format } from "date-fns";
 format(new Date(2014, 1, 11), "yyyy-MM-dd");
 ```
 
-Unfortuantely, not all packages currently support this feature. You can search through an entire list of packages through [pika.dev](https://pika.dev).
+Unfortunately, not all packages currently support this feature. You can search through an entire list of packages through [pika.dev](https://pika.dev).
 
 You can use community created packages to replicate the functionality. For eg. React would be:
 
@@ -113,7 +114,35 @@ ReactDOM.render(
 );
 ```
 
-## What about the bundle size?
+### How can I demo React with JSX?
+
+```jsx
+import Playground from "@agney/playground";
+
+const App = () => {
+  const snippet = {
+    markup: `<div id=app />`,
+    css: ``,
+    javascript: `import React, { createElement } from "@pika/react";
+import ReactDOM from "@pika/react-dom";
+
+ReactDOM.render(
+  <h1>Hello World</h1>,
+  document.getElementById("app")
+);`,
+  };
+  return (
+    <Playground
+      id="example"
+      initialSnippet={snippet}
+      defaultEditorTab="javascript"
+      transformJs
+    />
+  );
+};
+```
+
+### What about the bundle size?
 
 The component is fairly small at about ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@agney/playground). You can find the total size and time on [Bundle Phobia](https://bundlephobia.com/result?p=@agney/playground).
 
