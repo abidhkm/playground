@@ -1,6 +1,6 @@
 {
   "name": "@agney/playground",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A simple playground for HTML, CSS and JavaScript supporting module imports.",
   "private": false,
   "scripts": {
@@ -51,8 +51,7 @@
     "lodash": "^4.17.15",
     "prism-react-renderer": "^1.0.2",
     "react-inspector": "^4.0.0",
-    "react-simple-code-editor": "^0.10.0",
-    "styled-components": "^4.4.1"
+    "react-simple-code-editor": "^0.10.0"
   },
   "jest": {
     "rootDir": "src"
